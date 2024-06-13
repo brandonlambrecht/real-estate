@@ -10,8 +10,8 @@ mongoose
   .then(() => {
     console.log("Connected to MongoDB");
   })
-  .catch((err) => {
-    console.log(err);
+  .catch((error) => {
+    console.log(error);
   });
 
 const app = express();
@@ -29,8 +29,8 @@ app.use("/api/user", userRouter);
 app.use("/api/auth", authRouter);
 
 //Middleware //
-app.use((err, req, res, next) => {
-  const statusCode = err.statusCode || 500;
+app.use((error, req, res, next) => {
+  const statusCode = error.statusCode || 500;
   const message = err.message || "Internal Sever Error";
   return res.status(statusCode).json({
     success: false,
